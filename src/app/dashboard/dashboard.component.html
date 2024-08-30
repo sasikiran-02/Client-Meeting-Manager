@@ -1,0 +1,58 @@
+<div class="backdrop" (click)="onCancel()">
+  <div class="dialog-box">
+    <h2>Create a Meeting Schedule</h2>
+    <form (ngSubmit)="onSubmit()" #loginform="ngForm">
+      <p>
+        <label for="title">Meeting Topic</label>
+        <input type="text" id="title" name="title" [(ngModel)]="enteredTitle" #Meetingtopic="ngModel" required/>
+        @if(Meetingtopic.touched && Meetingtopic.invalid){ 
+          <div>Required</div>
+        }
+      </p>
+      <p>
+        <label for="title">Number of people</label>
+        <input
+          type="number"
+          id="numberpeople"
+          name="numberpeople"
+          [(ngModel)]="enteredNumber"
+          #numberpeopleInput="ngModel"
+          required
+        />
+        @if(numberpeopleInput.touched && numberpeopleInput.invalid){ 
+          <div>Required</div>
+        }
+      </p>
+
+      <p>
+        <label for="summary">Summary</label>
+        <textarea
+          id="summary"
+          rows="5"
+          name="summary"
+          [(ngModel)]="enteredSummary"
+        ></textarea>
+      </p>
+
+      <p>
+        <label for="due-date">Due Date</label>
+        <input
+          type="datetime-local"
+          id="due-date"
+          name="due-date"
+          [(ngModel)]="enterdDate"
+          #dueDateInput="ngModel"
+          required
+        />
+        @if(dueDateInput.touched && dueDateInput.invalid){ 
+          <div>Required</div>
+        }
+      </p>
+
+      <p class="actions">
+        <button type="button" (click)="onCancel()">Cancel</button>
+        <button type="submit" [disabled]="loginform.invalid">Create</button>
+      </p>
+    </form>
+  </div>
+</div>
